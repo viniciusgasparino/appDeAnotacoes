@@ -1,5 +1,6 @@
 import styled from "styled-components"
 
+
 const StyledSection = styled.section`
   width: 100%;
   min-height: 100vh;
@@ -18,6 +19,13 @@ const StyledContainer = styled.div`
   min-height: 800px;
   padding: 20px 0;
   margin-top: 30px;
+
+  @media (max-width:700px){
+    flex-direction: column;
+    align-items:center;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
  ` 
 
 const StyledCard = styled.div`
@@ -25,7 +33,7 @@ const StyledCard = styled.div`
   flex-direction: column;
   align-items:center;
   justify-content:center;
-  gap: 20px;
+  gap: 15px;
   height: 200px;
   margin-top: 20px;
   width: 200px;
@@ -36,19 +44,22 @@ const StyledCard = styled.div`
 function Section(){
   return(
     <>
-      <div>
-        <form>
-
-        </form>
-      </div>
       <StyledSection>
         <StyledCenter>
           <StyledContainer>
             <StyledCard>
               <h2>Titulo</h2>
               <p>Marca: XXX</p>
-              <p>preço unitario</p>
-              <p>Total</p>
+              <p>quantidade: XXX</p>
+              <p>preço unitario: xxx</p>
+              <p>Total: xxx</p>
+            </StyledCard>
+            <StyledCard>
+              <h2>Titulo</h2>
+              <p>Marca: XXX</p>
+              <p>quantidade: XXX</p>
+              <p>preço unitario: xxx</p>
+              <p>Total: xxx</p>
             </StyledCard>
           </StyledContainer>
         </StyledCenter>

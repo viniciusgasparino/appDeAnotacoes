@@ -31,7 +31,7 @@ const StyledDiv = styled.div`
   gap: 50px;
 `
 
-function Header(){      
+function Header({onClick}){      
   return(
     <StyledHeader>
       <StyledLogo>
@@ -40,7 +40,7 @@ function Header(){
       <StyledDiv>
         <Button
           text="Cadastrar"
-          onClick={()=>{alert("Funiocando")}}
+          onClick={onClick}
         />
       </StyledDiv>
     </StyledHeader>
