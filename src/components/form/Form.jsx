@@ -15,21 +15,11 @@ const StyledForm = styled.form`
   margin: 0 auto;
 `
 
-function Form(){
+function Form(props){
   return(
     <StyledCenter>
       <StyledForm>
-        <div>
-          <p>Insira o produto</p>
-          <input type="text" name="produto" />
-        </div>
-        <div>
-          <p>insira a marca</p>
-          <input type="text" name="marca" />
-        </div>
-        <div>
-          <button>Enviar</button>
-        </div>
+        {props.children}
       </StyledForm>
     </StyledCenter>
   )

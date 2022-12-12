@@ -35,7 +35,7 @@ function Header({onClick}){
   return(
     <StyledHeader>
       <StyledLogo>
-        <FaShoppingCart size="80px" color="blue"/>
+        <FaShoppingCart size="80px"/>
       </StyledLogo>
       <StyledDiv>
         <Button

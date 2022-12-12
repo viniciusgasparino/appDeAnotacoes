@@ -3,16 +3,18 @@
 
 
 
-function Input({label,name,error = null,...rest}){
+function Input({label,type,value,error = null,...rest}){
   return(
     <>
-      <label>{label}</label>
-      <input 
-        type="text" 
-        name={name} 
-        {...rest}
-      />
-  </>
+      <div>
+        <p>{label}</p>
+        <input 
+          type={type} 
+          value={value} 
+          {...rest}
+        />
+      </div>
+    </>
   )
 }
 
