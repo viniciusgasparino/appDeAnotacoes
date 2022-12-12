@@ -28,39 +28,14 @@ const StyledContainer = styled.div`
   }
  ` 
 
-const StyledCard = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items:center;
-  justify-content:center;
-  gap: 15px;
-  height: 200px;
-  margin-top: 20px;
-  width: 200px;
-  background-color: #eae7e7cb;
-`
 
-
-function Section(){
+function Section(props){
   return(
     <>
       <StyledSection>
         <StyledCenter>
           <StyledContainer>
-            <StyledCard>
-              <h2>Titulo</h2>
-              <p>Marca: XXX</p>
-              <p>quantidade: XXX</p>
-              <p>preço unitario: xxx</p>
-              <p>Total: xxx</p>
-            </StyledCard>
-            <StyledCard>
-              <h2>Titulo</h2>
-              <p>Marca: XXX</p>
-              <p>quantidade: XXX</p>
-              <p>preço unitario: xxx</p>
-              <p>Total: xxx</p>
-            </StyledCard>
+            {props.children}
           </StyledContainer>
         </StyledCenter>
       </StyledSection>

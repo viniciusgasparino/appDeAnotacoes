@@ -5,7 +5,7 @@ const StyledCenter = styled.div`
   margin: 0 auto;
 `
 
-const StyledForm = styled.form`
+const StyledForm = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;  

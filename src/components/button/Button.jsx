@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 const StyledButton = styled.button`
   border: none;
-  width: 150px;
+  width: 130px;
   padding: 20px;
   cursor: pointer;
   background-color: #cc11dd;
