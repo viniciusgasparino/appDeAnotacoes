@@ -40,10 +40,7 @@ function Home(){
 
   const handleCreateSubmit = (e) => {
     e.preventDefault()
-    console.log(produto)
-    console.log(marca)
-    console.log(preco)
-    console.log(qtd)
+    setList([produto,marca,preco,qtd])
   }
 
   return(
@@ -94,13 +91,19 @@ function Home(){
         )
       }
       <Section>
-        <Card 
-          titulo="Titulo"
-          marca="marca: "
-          quantidade="Quantidade: "
-          preco="preço unitário: "
-          total="preço Total: "
-        />
+      {
+        list.map((item,pos)=>{
+          return(
+            <Card key={pos}
+              titulo={item.produto}
+              marca={item.marca}
+              quantidade={item.qtd}
+              preco={item.preco}
+              total={item.total} 
+            />
+          )
+        })
+      }
       </Section>
       <Footer/>
     </>
