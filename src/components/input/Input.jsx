@@ -1,8 +1,5 @@
 
 
-
-
-
 function Input({label,type,value,error = null,...rest}){
   return(
     <>

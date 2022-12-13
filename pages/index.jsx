@@ -5,6 +5,7 @@ import Form from "../src/components/form/Form"
 import Input from "../src/components/input/Input"
 import Button from "../src/components/button/Button"
 import Card from "../src/components/card/Card"
+import {FaEdit,FaRegTrashAlt} from "react-icons/fa";
 import { useState } from "react"
 
 
@@ -40,7 +41,8 @@ function Home(){
 
   const handleCreateSubmit = (e) => {
     e.preventDefault()
-    setList([produto,marca,preco,qtd])
+    console.log(total)
+    setList(list.concat({produto,marca,preco,qtd,total}))
   }
 
   return(
@@ -91,18 +93,26 @@ function Home(){
         )
       }
       <Section>
-      {
-        list.map((item,pos)=>{
-          return(
-            <Card key={pos}
+      { 
+        list.map(item =>
+          (
+            <Card key={item.produto}
               titulo={item.produto}
               marca={item.marca}
               quantidade={item.qtd}
               preco={item.preco}
               total={item.total} 
+              editar={<FaEdit 
+                cursor="pointer"
+                onClick={()=>{console.log("click")}}
+              />}
+              apagar={<FaRegTrashAlt
+                cursor="pointer"
+                onClick={()=>{console.log("click")}}
+              />}
             />
           )
-        })
+        )
       }
       </Section>
       <Footer/>

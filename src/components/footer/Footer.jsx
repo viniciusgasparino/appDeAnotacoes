@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 const StyledFooter = styled.footer`
   min-height: 90px;
-  background-color: red;
+  background-color: #c8b8e0;
   padding: 0 100px;
 `
 
@@ -11,7 +11,7 @@ const StyledFooter = styled.footer`
 function Footer(){
   return(
     <StyledFooter>
-      ssssssss
+    
     </StyledFooter>
   )
 }
