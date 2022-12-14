@@ -11,6 +11,7 @@ import { useState } from "react"
 
 function Home(){
   const [open,setOpen] = useState(false)
+  const [id,setId] = useState(null)
   const [produto,setProduto] = useState("")
   const [marca,setMarca] = useState("")
   const [preco,setPreco] = useState(0)
@@ -41,8 +42,36 @@ function Home(){
 
   const handleCreateSubmit = (e) => {
     e.preventDefault()
-    console.log(total)
-    setList(list.concat({produto,marca,preco,qtd,total}))
+    setList(list.concat({_id: new Date().getMilliseconds().toString(),produto,marca,preco,qtd,total}))
+    setProduto("")
+    setMarca("")
+    setPreco(0)
+    setQtd(0)
+    setTotal(0)
+  }
+
+  const handleShowUpdate = (text) => {
+    setId(text._id)
+    setProduto(text.produto)
+    setMarca(text.marca)
+    setPreco(text.preco)
+    setQtd(text.qtd)
+  }
+
+  const handleUpdate = (e) => {
+    e.preventDefault()
+    if(!produto && !marca && !preco && !qtd) return
+    setList(list.map(item=>item._id===id ? {produto,marca,preco,qtd,_id:id} : item))
+    setProduto("")
+    setMarca("")
+    setPreco(0)
+    setQtd(0)
+    setTotal(0)
+    setId(null)
+  }
+
+  const handleDelete = (text) => {
+    setList(list.filter(item=>item._id !== text))
   }
 
   return(
@@ -50,7 +79,7 @@ function Home(){
       <Header onClick={handleClick}/>
       {
         open && (
-          <form onSubmit={handleCreateSubmit}>
+          <form onSubmit={id ? handleUpdate : handleCreateSubmit }>
             <Form>
               <Input
                 label="produto" 
@@ -85,7 +114,7 @@ function Home(){
                 max="20"
               />
               <Button 
-                text="Enviar"
+                text={id ? "Atualizar" : "Cadastrar"}
                 type="submit"
               /> 
             </Form>   
@@ -96,7 +125,7 @@ function Home(){
       { 
         list.map(item =>
           (
-            <Card key={item.produto}
+            <Card key={item._id}
               titulo={item.produto}
               marca={item.marca}
               quantidade={item.qtd}
@@ -104,11 +133,11 @@ function Home(){
               total={item.total} 
               editar={<FaEdit 
                 cursor="pointer"
-                onClick={()=>{console.log("click")}}
+                onClick={()=>handleShowUpdate(item)}
               />}
               apagar={<FaRegTrashAlt
                 cursor="pointer"
-                onClick={()=>{console.log("click")}}
+                onClick={()=>handleDelete(item._id)}
               />}
             />
           )
