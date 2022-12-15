@@ -28,8 +28,8 @@ function Card(props){
       <h2>Titulo: {props.titulo}</h2>
       <p>Marca: {props.marca}</p>
       <p>Quantidade: {props.quantidade}</p>
-      <p>Preço Unitário: {props.preco}</p>
-      <p>Total: {props.total}</p>
+      <p>Preço Unitário: R$ {props.preco}</p>
+      <p>Total: R$ {props.total}</p>
       <StyledIcon>
         {props.editar}
         {props.apagar}

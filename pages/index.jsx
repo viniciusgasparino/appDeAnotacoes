@@ -9,6 +9,7 @@ import {FaEdit,FaRegTrashAlt} from "react-icons/fa";
 import { useState } from "react"
 
 
+
 function Home(){
   const [open,setOpen] = useState(false)
   const [id,setId] = useState(null)
@@ -46,7 +47,7 @@ function Home(){
     setProduto("")
     setMarca("")
     setPreco(0)
-    setQtd(0)
+    setQtd(1)
     setTotal(0)
   }
 
@@ -65,7 +66,7 @@ function Home(){
     setProduto("")
     setMarca("")
     setPreco(0)
-    setQtd(0)
+    setQtd(1)
     setTotal(0)
     setId(null)
   }
@@ -78,8 +79,8 @@ function Home(){
     <>
       <Header onClick={handleClick}/>
       {
-        open && (
-          <form onSubmit={id ? handleUpdate : handleCreateSubmit }>
+        open && (       
+          <form onSubmit={id ? handleUpdate : handleCreateSubmit}>
             <Form>
               <Input
                 label="produto" 
@@ -96,13 +97,12 @@ function Home(){
                 onChange={e=>handleChangeMarca(e.target.value)}
               />
               <Input
-                label="Preço" 
+                label="preço"
                 name="preço"
                 type="number"
+                placeholder="$0.00" 
                 value={preco}
                 onChange={e=>handleChangePreco(e.target.value)}
-                min="0"
-                max="1000"
               />
               <Input
                 label="quantidade" 
@@ -110,11 +110,10 @@ function Home(){
                 type="number"
                 value={qtd}
                 onChange={e=>handleChangeQtd(e.target.value)}
-                min="0"
-                max="20"
+                min="1"
               />
               <Button 
-                text={id ? "Atualizar" : "Cadastrar"}
+                text={id ? "Atualizar" : "Enviar"}
                 type="submit"
               /> 
             </Form>   
@@ -128,9 +127,9 @@ function Home(){
             <Card key={item._id}
               titulo={item.produto}
               marca={item.marca}
-              quantidade={item.qtd}
               preco={item.preco}
-              total={item.total} 
+              quantidade={item.qtd}
+              total={item.total = item.preco * item.qtd} 
               editar={<FaEdit 
                 cursor="pointer"
                 onClick={()=>handleShowUpdate(item)}
