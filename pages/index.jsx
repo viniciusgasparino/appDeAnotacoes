@@ -15,11 +15,11 @@ function Home(){
   const [id,setId] = useState(null)
   const [produto,setProduto] = useState("")
   const [marca,setMarca] = useState("")
-  const [preco,setPreco] = useState(0)
+  const [preco,setPreco] = useState(parseFloat(0).toFixed(2))
   const [qtd,setQtd] = useState(0)
   const [total,setTotal] = useState(0)
   const [list,setList] = useState([])
-
+ 
 
   const handleClick = () => {
     setOpen(!open)
@@ -46,9 +46,10 @@ function Home(){
     setList(list.concat({_id: new Date().getMilliseconds().toString(),produto,marca,preco,qtd,total}))
     setProduto("")
     setMarca("")
-    setPreco(0)
+    setPreco(parseFloat(0).toFixed(2))
     setQtd(1)
-    setTotal(0)
+    setTotal([])
+    
   }
 
   const handleShowUpdate = (text) => {
@@ -75,9 +76,11 @@ function Home(){
     setList(list.filter(item=>item._id !== text))
   }
 
+  
   return(
     <>
       <Header onClick={handleClick}/>
+
       {
         open && (       
           <form onSubmit={id ? handleUpdate : handleCreateSubmit}>
@@ -99,8 +102,9 @@ function Home(){
               <Input
                 label="preço"
                 name="preço"
-                type="number"
+                type="name"
                 placeholder="$0.00" 
+                min="0"
                 value={preco}
                 onChange={e=>handleChangePreco(e.target.value)}
               />
@@ -127,9 +131,9 @@ function Home(){
             <Card key={item._id}
               titulo={item.produto}
               marca={item.marca}
-              preco={item.preco}
+              preco={parseFloat(item.preco).toFixed(2)}
               quantidade={item.qtd}
-              total={item.total = item.preco * item.qtd} 
+              total={(item.total) = parseFloat(item.preco).toFixed(2) * parseFloat(item.qtd).toFixed(2)} 
               editar={<FaEdit 
                 cursor="pointer"
                 onClick={()=>handleShowUpdate(item)}
