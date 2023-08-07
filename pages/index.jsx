@@ -9,15 +9,11 @@ import {FaEdit,FaRegTrashAlt} from "react-icons/fa";
 import { useState } from "react"
 
 
-
 function Home(){
   const [open,setOpen] = useState(false)
   const [id,setId] = useState(null)
-  const [produto,setProduto] = useState("")
-  const [marca,setMarca] = useState("")
-  const [preco,setPreco] = useState(parseFloat(0).toFixed(2))
-  const [qtd,setQtd] = useState(0)
-  const [total,setTotal] = useState(0)
+  const [titulo,setTitulo] = useState("")
+  const [text,setText] = useState("")
   const [list,setList] = useState([])
  
 
@@ -25,55 +21,39 @@ function Home(){
     setOpen(!open)
   }
 
-  const handleChangeProduto = (text) => {
-    setProduto(text)
+  const handleChangeTitulo = (message) => {
+    setTitulo(message)
   }
 
-  const handleChangeMarca = (text) => {
-    setMarca(text)
+  const handleChangeText = (message) => {
+    setText(message)
   }
 
-  const handleChangePreco = (text) => {
-    setPreco(text)
-  }
-
-  const handleChangeQtd = (text) => {
-    setQtd(text)
-  }
 
   const handleCreateSubmit = (e) => {
     e.preventDefault()
-    setList(list.concat({_id: new Date().getMilliseconds().toString(),produto,marca,preco,qtd,total}))
-    setProduto("")
-    setMarca("")
-    setPreco(parseFloat(0).toFixed(2))
-    setQtd(1)
-    setTotal([])
-    
+    setList(list.concat({_id: new Date().getMilliseconds().toString(),titulo,text}))
+    setTitulo("")
+    setText("")
   }
 
   const handleShowUpdate = (text) => {
     setId(text._id)
-    setProduto(text.produto)
-    setMarca(text.marca)
-    setPreco(text.preco)
-    setQtd(text.qtd)
+    setTitulo(text.titulo)
+    setText(text.text)
   }
 
   const handleUpdate = (e) => {
     e.preventDefault()
-    if(!produto && !marca && !preco && !qtd) return
-    setList(list.map(item=>item._id===id ? {produto,marca,preco,qtd,_id:id} : item))
-    setProduto("")
-    setMarca("")
-    setPreco(0)
-    setQtd(1)
-    setTotal(0)
+    if(!titulo && !text) return
+    setList(list.map(item=>item._id===id ? {titulo,text,_id:id} : item))
+    setTitulo("")
+    setText("")
     setId(null)
   }
 
-  const handleDelete = (text) => {
-    setList(list.filter(item=>item._id !== text))
+  const handleDelete = (message) => {
+    setList(list.filter(item=>item._id !== message))
   }
 
   
@@ -86,35 +66,20 @@ function Home(){
           <form onSubmit={id ? handleUpdate : handleCreateSubmit}>
             <Form>
               <Input
-                label="produto" 
+                label="titulo" 
                 name="name"
                 type="name"
-                value={produto}
-                onChange={e=>handleChangeProduto(e.target.value)}
+                value={titulo}
+                onChange={e=>handleChangeTitulo(e.target.value)}
+                maxlength="15"
               />
-              <Input
-                label="Marca" 
-                name="marca"
+              <textarea
+                label="text" 
+                name="text"
                 type="name"
-                value={marca}
-                onChange={e=>handleChangeMarca(e.target.value)}
-              />
-              <Input
-                label="preço"
-                name="preço"
-                type="name"
-                placeholder="$0.00" 
-                min="0"
-                value={preco}
-                onChange={e=>handleChangePreco(e.target.value)}
-              />
-              <Input
-                label="quantidade" 
-                name="quantidade"
-                type="number"
-                value={qtd}
-                onChange={e=>handleChangeQtd(e.target.value)}
-                min="1"
+                value={text}
+                onChange={e=>handleChangeText(e.target.value)}
+                maxlength="30"
               />
               <Button 
                 text={id ? "Atualizar" : "Enviar"}
@@ -129,11 +94,8 @@ function Home(){
         list.map(item =>
           (
             <Card key={item._id}
-              titulo={item.produto}
-              marca={item.marca}
-              preco={parseFloat(item.preco).toFixed(2)}
-              quantidade={item.qtd}
-              total={(item.total) = parseFloat(item.preco).toFixed(2) * parseFloat(item.qtd).toFixed(2)} 
+              titulo={item.titulo}
+              text={item.text}
               editar={<FaEdit 
                 cursor="pointer"
                 onClick={()=>handleShowUpdate(item)}

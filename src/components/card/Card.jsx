@@ -26,10 +26,7 @@ function Card(props){
   return(
     <StyledCard>
       <h2>Titulo: {props.titulo}</h2>
-      <p>Marca: {props.marca}</p>
-      <p>Quantidade: {props.quantidade}</p>
-      <p>Preço Unitário: R$ {props.preco}</p>
-      <p>Total: R$ {props.total}</p>
+      <p>texto: {props.Text}</p>
       <StyledIcon>
         {props.editar}
         {props.apagar}
