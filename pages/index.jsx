@@ -5,6 +5,7 @@ import Form from "../src/components/form/Form"
 import Input from "../src/components/input/Input"
 import Button from "../src/components/button/Button"
 import Card from "../src/components/card/Card"
+import TextArea from "../src/components/textArea/TextArea"
 import {FaEdit,FaRegTrashAlt} from "react-icons/fa";
 import { useState } from "react"
 
@@ -37,10 +38,10 @@ function Home(){
     setText("")
   }
 
-  const handleShowUpdate = (text) => {
-    setId(text._id)
-    setTitulo(text.titulo)
-    setText(text.text)
+  const handleShowUpdate = (message) => {
+    setId(message._id)
+    setTitulo(message.titulo)
+    setText(message.text)
   }
 
   const handleUpdate = (e) => {
@@ -73,16 +74,18 @@ function Home(){
                 onChange={e=>handleChangeTitulo(e.target.value)}
                 maxlength="15"
               />
-              <textarea
+              <TextArea
+                placeholder="Digite aqui a sua anotação"
                 label="text" 
-                name="text"
+                name="name"
                 type="name"
                 value={text}
                 onChange={e=>handleChangeText(e.target.value)}
-                maxlength="30"
+                maxLength={22}
+                rows="4" 
               />
               <Button 
-                text={id ? "Atualizar" : "Enviar"}
+                text={id ? "Atualizar" : "Criar Nota"}
                 type="submit"
               /> 
             </Form>   
