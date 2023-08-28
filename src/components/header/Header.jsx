@@ -39,7 +39,7 @@ function Header({onClick}){
       </StyledLogo>
       <StyledDiv>
         <Button
-          text="Cadastrar"
+          text="Iniciar"
           onClick={onClick}
         />
       </StyledDiv>

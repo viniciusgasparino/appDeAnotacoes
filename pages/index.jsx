@@ -16,7 +16,23 @@ function Home(){
   const [titulo,setTitulo] = useState("")
   const [text,setText] = useState("")
   const [list,setList] = useState([])
+  const [errors,setErrors] = useState({titulo: null,text: null})
  
+  const isValidForm = () => {
+    if(!titulo) {
+      setErrors({titulo:"Esse campo não pode ficar vazio"})
+      return false
+    }
+
+    if(!text) {
+      setErrors({text:"Esse campo não pode ficar vazio"})
+      return false
+    }
+
+    setErrors({})
+    return true
+  }
+
 
   const handleClick = () => {
     setOpen(!open)
@@ -33,10 +49,13 @@ function Home(){
 
   const handleCreateSubmit = (e) => {
     e.preventDefault()
+    if(!isValidForm()) return
+
     setList(list.concat({_id: new Date().getMilliseconds().toString(),titulo,text}))
     setTitulo("")
     setText("")
   }
+
 
   const handleShowUpdate = (message) => {
     setId(message._id)
@@ -44,14 +63,16 @@ function Home(){
     setText(message.text)
   }
 
+
   const handleUpdate = (e) => {
     e.preventDefault()
-    if(!titulo && !text) return
+    if(!isValidForm()) return
     setList(list.map(item=>item._id===id ? {titulo,text,_id:id} : item))
     setTitulo("")
     setText("")
     setId(null)
   }
+
 
   const handleDelete = (message) => {
     setList(list.filter(item=>item._id !== message))
@@ -72,8 +93,11 @@ function Home(){
                 type="name"
                 value={titulo}
                 onChange={e=>handleChangeTitulo(e.target.value)}
-                maxlength="15"
+                maxLength={15}
               />
+              {
+                errors && errors.titulo
+              }
               <TextArea
                 placeholder="Digite aqui a sua anotação"
                 label="text" 
@@ -84,6 +108,9 @@ function Home(){
                 maxLength={22}
                 rows="4" 
               />
+              {
+                errors && errors.text
+              }
               <Button 
                 text={id ? "Atualizar" : "Criar Nota"}
                 type="submit"
