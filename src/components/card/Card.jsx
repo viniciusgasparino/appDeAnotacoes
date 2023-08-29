@@ -25,7 +25,7 @@ const StyledIcon = styled.div`
 const StyledText = styled.span`
   text-align: center;
 `
-
+    
 
 function Card(props){
   return(

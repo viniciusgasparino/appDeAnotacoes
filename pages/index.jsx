@@ -6,10 +6,11 @@ import Input from "../src/components/input/Input"
 import Button from "../src/components/button/Button"
 import Card from "../src/components/card/Card"
 import TextArea from "../src/components/textArea/TextArea"
+import Error from "../src/components/error/Error"
 import {FaEdit,FaRegTrashAlt} from "react-icons/fa";
 import { useState } from "react"
 
-
+          
 function Home(){
   const [open,setOpen] = useState(false)
   const [id,setId] = useState(null)
@@ -17,6 +18,7 @@ function Home(){
   const [text,setText] = useState("")
   const [list,setList] = useState([])
   const [errors,setErrors] = useState({titulo: null,text: null})
+  
  
   const isValidForm = () => {
     if(!titulo) {
@@ -96,7 +98,7 @@ function Home(){
                 maxLength={15}
               />
               {
-                errors && errors.titulo
+                errors && <Error>{errors.titulo}</Error>
               }
               <TextArea
                 placeholder="Digite aqui a sua anotação"
@@ -109,7 +111,7 @@ function Home(){
                 rows="4" 
               />
               {
-                errors && errors.text
+                errors && <Error>{errors.text}</Error>
               }
               <Button 
                 text={id ? "Atualizar" : "Criar Nota"}
