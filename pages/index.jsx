@@ -83,7 +83,10 @@ function Home(){
   
   return(
     <>
-      <Header onClick={handleClick}/>
+      <Header 
+        onClick={handleClick}
+        text={!open ? "iniciar": "Fechar"}
+      />
 
       {
         open && (       
@@ -102,7 +105,7 @@ function Home(){
               }
               <TextArea
                 placeholder="Digite aqui a sua anotação"
-                label="text" 
+                label="nota" 
                 name="name"
                 type="name"
                 value={text}

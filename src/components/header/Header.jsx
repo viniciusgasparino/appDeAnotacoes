@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import {FaShoppingCart} from "react-icons/fa"
+import {FaBook} from "react-icons/fa"
 import Button from "../button/Button"
 
 const StyledHeader = styled.section`
@@ -31,15 +31,15 @@ const StyledDiv = styled.div`
   gap: 50px;
 `
 
-function Header({onClick}){      
+function Header({onClick,text}){      
   return(
     <StyledHeader>
       <StyledLogo>
-        <FaShoppingCart size="80px"/>
+        <FaBook size="80px"/>
       </StyledLogo>
       <StyledDiv>
         <Button
-          text="Iniciar"
+          text={text}
           onClick={onClick}
         />
       </StyledDiv>
