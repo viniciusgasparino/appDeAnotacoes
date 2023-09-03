@@ -110,7 +110,7 @@ function Home(){
                 type="name"
                 value={text}
                 onChange={e=>handleChangeText(e.target.value)}
-                maxLength={22}
+                maxLength={42}
                 rows="4" 
               />
               {
